@@ -1,0 +1,9 @@
+<div ng-controller = 'exibiPaginaGrupoController'>
+	Grupo : {{grupo.nome}}
+	<br>
+	Usuários do grupo:
+	
+	<div ng-repeat = 'user in grupo.participantes'>
+		<label>{{user.nome}}</label>		
+	</div>	
+</div>

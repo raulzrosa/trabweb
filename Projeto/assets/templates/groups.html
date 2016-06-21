@@ -1,0 +1,11 @@
+<div ng-controller = 'UserController'>
+	<div ng-controller = 'groupController' class="container-fluid">
+		<label> Crie seu grupo aqui <label><br>
+		<input ng-model = 'nomeGrupo' type="textarea" class="form-control" placeholder="Nome do Grupo"><br>		
+				<span class="input-group-btn">
+					<button ng-click = 'criaGrupo(nomeGrupo)' class="btn btn-default" type="button">
+					Cadastrar
+					</button>
+				</span>
+	</div>
+</div>

@@ -1,0 +1,27 @@
+<div ng-controller = 'LoginController'>
+					<label>Digite seu nome de usuário e sua senha<label>
+					<input ng-model = 'caixa1' type="textarea" class="form-control" placeholder="Nome de usuario">
+					<input ng-model = 'caixa2' type="password" class="form-control" placeholder="Senha">
+					<span class="input-group-btn">
+						<button ng-click = 'verificar(caixa1, caixa2)' class="btn btn-default" type="button">
+							 Login
+						</button>
+					</span>
+					<br>
+					<br>
+					<br>
+					<br>
+
+					<label> Cadastre-se aqui <label>
+					<input ng-model = 'caixaCadastro1' type="textarea" class="form-control" placeholder="Nome de usuario">
+					<input ng-model = 'caixaCadastro2' type="password" class="form-control" placeholder="Senha">
+					<span class="input-group-btn">
+						<button ng-click = 'cadastrar(caixaCadastro1, caixaCadastro2)' class="btn btn-default" type="button">
+							 Cadastrar
+						</button>
+					</span>
+
+
+
+
+<div>

@@ -1,0 +1,33 @@
+<div ng-controller = 'UserController'>
+	<!-- Cabeçalho -->
+	<div class="page-header">
+		<ul class="nav nav-pills">
+		  <li role="presentation" class="active"><a href="#/home">Home</a></li>
+		  <li role="presentation"><a href="#/cadastro">Editar Perfil</a></li>
+		  <li role="presentation"><a href="#/groups">Criar Grupo</a></li>
+		  <li role="presentation"><a href="#/gruposcadastrados">Ver Grupos</a></li>
+		  <li role="presentation"><a href="#/usuarioscadastrados">Ver usuarios</a></li>
+		  <li role="presentation"><a href="#/paginaexport">Download Dados</a></li>
+		  <li role="presentation"><a href="#" ng-click = 'logout()'>Logout</a></li>
+		</ul>
+	</div>
+
+	<div ng-controller = 'exibiPaginaGrupoController'>
+		<div class="page-header">
+			<h1>Grupo <small>{{grupo.nome}}</small></h1>
+		</div>
+		<button class="btn btn-default" ng-click='associarGrupo(user.login)' ng-hide = "to_participando">Associar</button>
+		<button class="btn btn-default" ng-click='desassociarGrupo(user.login)' ng-show = "to_participando">Desassociar</button>
+		<br>
+		<br>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Usuários do Grupo</div>
+			<ul class="list-group">
+				<div ng-repeat = 'user in grupo.participantes'>
+					<li class="list-group-item"><a href='#/usuario/{{user.login}}'>{{user.login}} ({{user.nome}})</a></li>
+				</div>
+			</ul>
+		</div>
+				
+	</div>
+</div>

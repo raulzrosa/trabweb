@@ -1,0 +1,18 @@
+<div ng-controller = 'UserController'>
+	<!-- Cabeçalho -->
+	<div class="page-header">
+		<ul class="nav nav-pills">
+		  <li role="presentation" class="active"><a href="#/home">Home</a></li>
+		  <li role="presentation"><a href="#/cadastro">Editar Perfil</a></li>
+		  <li role="presentation"><a href="#/groups">Criar Grupo</a></li>
+		  <li role="presentation"><a href="#/gruposcadastrados">Ver Grupos</a></li>
+		  <li role="presentation"><a href="#/usuarioscadastrados">Ver usuarios</a></li>
+		  		  <li role="presentation"><a href="#/paginaexport">Download Dados</a></li>
+		  <li role="presentation"><a href="#" ng-click = 'logout()'>Logout</a></li>
+		</ul>
+	</div>
+	Usuários Cadastrados:
+	<div ng-repeat = 'usuario in users'>
+		<a href='#/usuario/{{usuario.login}}'>{{usuario.login}} ({{usuario.nome}})</a>	
+	</div>	
+</div>

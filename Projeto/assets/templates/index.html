@@ -1,0 +1,79 @@
+
+<div ng-controller = 'UserController' class="container-fluid">
+
+	<!-- Cabeçalho -->
+	<div class="page-header">
+		<div class="row">
+			<!-- Log Out-->
+			<div class="col-md-9">
+				  <button ng-click = 'logout()' class ="btn btn-default"> Logout </button>
+			</div>
+			<div class="col-md-9">
+				  <a href="#/cadastro" class ="btn btn-default">Editar perfil</a>
+			</div>
+			<div class="col-md-9">
+				  <a href="#/groups" class ="btn btn-default">Criar um grupo</a>
+			</div>
+			<div class="col-md-9">
+				  <a href="#/gruposcadastrados" class ="btn btn-default">Ver grupos</a>
+			</div>
+			<div class="col-md-9">
+				  <a href="#/usuarioscadastrados" class ="btn btn-default">Ver usuarios</a>
+			</div>
+			<!-- Pesquisar -->
+			<div class="col-md-3">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Buscar Perfil">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							<span class="glyphicon glyphicon-search">
+						</button>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Menu -->
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Perfil -->
+			<div class="col-md-3">
+				<img src="images/{{user.foto}}" class="img-thumbnail" alt="Responsive image">
+				<ul class="list-group">
+					<li class="list-group-item">{{user.login}} </li>
+					<li class="list-group-item">{{user.nome}}</li>
+					<li class="list-group-item">Número de posts: {{user.posts.length}}</li>
+					<li class="list-group-item">Descrição: {{user.description}}</li>
+					<li class="list-group-item">Data de nascimento: {{user.birthdate| date:"dd/MM/yyyy"}}</li>
+				</ul>
+			</div>
+			
+			<!-- Post -->
+			<div class="col-md-7">
+				<input ng-model = 'caixa' type="textarea" class="form-control" placeholder="Você gostaria de compartilhar algo?">
+					<span class="input-group-btn">
+						<button ng-click = 'postar(caixa)' class="btn btn-default" type="button">
+							<span class="glyphicon glyphicon-pencil"> Publicar
+						</button>
+					</span>
+				<br>
+				<br>
+				<!-- escreve os post na tela -->
+				<div ng-repeat = 'post in user.posts'>
+					<label>{{post.text}}  {{post.updatedAt	| date: "dd/MM/yyyy"}}</label>
+					
+					<!-- Botao para editar o post -->
+					<a class="btn btn-default" href="#/editaPost/{{post.id}}">
+						<span class="glyphicon glyphicon-pencil">
+					</a>
+					
+						
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+</div>

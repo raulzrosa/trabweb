@@ -1,0 +1,128 @@
+		<style>
+			.bs-callout {
+				padding: 20px;
+				margin: 20px 0;
+				border: 1px solid #eee;
+				border-left-width: 5px;
+				border-radius: 3px;
+			}
+			.bs-callout h4 {
+				margin-top: 0;
+				margin-bottom: 5px;
+			}
+			.bs-callout p:last-child {
+				margin-bottom: 0;
+			}
+				.bs-callout code {
+				border-radius: 3px;
+			}
+			.bs-callout+.bs-callout {
+				margin-top: -5px;
+			}
+			.bs-callout-default {
+				border-left-color: #777;
+			}
+			.bs-callout-default h4 {
+				color: #777;
+			}
+			.bs-callout-primary {
+				border-left-color: #428bca;
+			}
+			.bs-callout-primary h4 {
+				color: #428bca;
+			}
+			.bs-callout-success {
+				border-left-color: #5cb85c;
+			}
+			.bs-callout-success h4 {
+				color: #5cb85c;
+			}
+			.bs-callout-danger {
+				border-left-color: #d9534f;
+			}
+			.bs-callout-danger h4 {
+				color: #d9534f;
+			}
+			.bs-callout-warning {
+				border-left-color: #f0ad4e;
+			}
+			.bs-callout-warning h4 {
+				color: #f0ad4e;
+			}
+			.bs-callout-info {
+				border-left-color: #5bc0de;
+			}
+			.bs-callout-info h4 {
+				color: #5bc0de;
+			}
+		</style>
+<div ng-controller = 'UserController'>
+	<!-- Cabeçalho -->
+	
+	<div class="page-header">
+		<ul class="nav nav-pills">
+		  <li role="presentation" class="active"><a href="#/home">Home</a></li>
+		  <li role="presentation"><a href="#/cadastro">Editar Perfil</a></li>
+		  <li role="presentation"><a href="#/groups">Criar Grupo</a></li>
+		  <li role="presentation"><a href="#/gruposcadastrados">Ver Grupos</a></li>
+		  <li role="presentation"><a href="#/usuarioscadastrados">Ver usuarios</a></li>
+		  <li role="presentation"><a href="#/paginaexport">Download Dados</a></li>
+		  <li role="presentation"><a href="#" ng-click = 'logout()'>Logout</a></li>
+		</ul>
+	</div>
+	<div ng-controller = 'exibiPaginaUsuarioController'>
+		
+		<!-- informações do usuário -->
+		<div class="page-header">
+			<h1>
+				Usuário <small>{{usuario.login}} ({{usuario.nome}})</small>
+				<button class="btn btn-default" ng-click='segueUsuario()' ng-hide = "to_seguindo">Seguir</button>
+				<button class="btn btn-default" ng-click='pararDeSeguirUsuario()' ng-show = "to_seguindo" >Parar de seguir</button>
+			</h1>
+		</div>
+		<div class="col-md-3">
+		<br>
+		<img src="images/{{usuario.foto}}" class="img-thumbnail" alt="Responsive image">
+		<br>
+		<div class="panel panel-primary">
+		  <div class="panel-heading">Informações</div>
+		</div>
+		 <ul class="list-group">
+			<li class="list-group-item">Descrição : {{usuario.description}}</li>
+			<li class="list-group-item">Data de Nascimento : {{usuario.birthdate | date: "dd/MM/yyyy"}}</li>
+			<li class="list-group-item">
+				<!-- grupos que o usuario participa -->
+				Grupos que participa :
+				<div ng-repeat = 'grupo in usuario.grupos_segue'>
+					<a href='#/grupo/{{grupo.id}}'>{{grupo.nome}}</a>			
+				</div>
+				<!-- grupos que o usuario participa -->
+				Pessoas que Segue :
+				<div ng-repeat = 'pessoa in usuario.eu_sigo'>
+					<a href='#/usuario/{{pessoa.login}}'>{{pessoa.login}}</a>			
+				</div>
+			</li>
+		</ul>
+		</div>
+		<!-- posts bonitoes -->
+		<div class="col-md-7">
+			Posts:
+			<div ng-repeat = 'post in usuario.posts'>
+				<div class="bs-callout bs-callout-primary">
+					<div ng-bind-html="post.text | trataPost" ></div>
+					{{post.updatedAt	| date: "dd/MM/yyyy"}}
+					<button class="btn btn-default" ng-click='curtirPost(post)'>
+						<span class="glyphicon glyphicon-thumbs-up">
+					</button>
+					{{post.quem_curtiu.length}}
+					<button class="btn btn-default" ng-click='descurtirPost(post)'>
+						<span class="glyphicon glyphicon-thumbs-down">
+					</button>
+					{{post.quem_nao_curtiu.length}}
+				</div>		
+			</div>
+		</div>
+	</div>
+</div>
+
+

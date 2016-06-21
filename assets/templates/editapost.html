@@ -1,0 +1,31 @@
+<div ng-controller = 'UserController'>
+	<!-- Cabeçalho -->
+	<div class="page-header">
+		<ul class="nav nav-pills">
+		  <li role="presentation" class="active"><a href="#/home">Home</a></li>
+		  <li role="presentation"><a href="#/cadastro">Editar Perfil</a></li>
+		  <li role="presentation"><a href="#/groups">Criar Grupo</a></li>
+		  <li role="presentation"><a href="#/gruposcadastrados">Ver Grupos</a></li>
+		  <li role="presentation"><a href="#/usuarioscadastrados">Ver usuarios</a></li>
+		  <li role="presentation"><a href="#/paginaexport">Download Dados</a></li>
+		  <li role="presentation"><a href="#" ng-click = 'logout()'>Logout</a></li>
+		</ul>
+	</div>
+	<div ng-controller = 'editaPostController'>
+	<label>Edite seu post:</label>
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="" ng-model="post.text">
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button" ng-click='carregaTexto()'>
+				<span class="glyphicon glyphicon-pencil">
+				</button>
+			</span>
+		</div>
+		
+	<!-- Botao para excluir o post -->
+		<button class="btn btn-default" type="button" ng-click='deletaPost()'>
+			Excluir Post
+		</button>
+						
+	</div>
+</div>

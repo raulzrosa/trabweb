@@ -1,0 +1,130 @@
+<style>
+			.bs-callout {
+				padding: 20px;
+				margin: 20px 0;
+				border: 1px solid #eee;
+				border-left-width: 5px;
+				border-radius: 3px;
+			}
+			.bs-callout h4 {
+				margin-top: 0;
+				margin-bottom: 5px;
+			}
+			.bs-callout p:last-child {
+				margin-bottom: 0;
+			}
+				.bs-callout code {
+				border-radius: 3px;
+			}
+			.bs-callout+.bs-callout {
+				margin-top: -5px;
+			}
+			.bs-callout-default {
+				border-left-color: #777;
+			}
+			.bs-callout-default h4 {
+				color: #777;
+			}
+			.bs-callout-primary {
+				border-left-color: #428bca;
+			}
+			.bs-callout-primary h4 {
+				color: #428bca;
+			}
+			.bs-callout-success {
+				border-left-color: #5cb85c;
+			}
+			.bs-callout-success h4 {
+				color: #5cb85c;
+			}
+			.bs-callout-danger {
+				border-left-color: #d9534f;
+			}
+			.bs-callout-danger h4 {
+				color: #d9534f;
+			}
+			.bs-callout-warning {
+				border-left-color: #f0ad4e;
+			}
+			.bs-callout-warning h4 {
+				color: #f0ad4e;
+			}
+			.bs-callout-info {
+				border-left-color: #5bc0de;
+			}
+			.bs-callout-info h4 {
+				color: #5bc0de;
+			}
+</style>
+<div ng-controller = 'UserController' class="container-fluid">
+
+	<!-- Cabeçalho -->
+	<div class="page-header">
+		<ul class="nav nav-pills">
+		  <li role="presentation" class="active"><a href="#/home">Home</a></li>
+		  <li role="presentation"><a href="#/cadastro">Editar Perfil</a></li>
+		  <li role="presentation"><a href="#/groups">Criar Grupo</a></li>
+		  <li role="presentation"><a href="#/gruposcadastrados">Ver Grupos</a></li>
+		  <li role="presentation"><a href="#/usuarioscadastrados">Ver usuarios</a></li>
+		  <li role="presentation"><a href="#/paginaexport">Download Dados</a></li>
+		  <li role="presentation"><a href="#" ng-click = 'logout()'>Logout</a></li>
+		</ul>
+	</div>
+	
+	<!-- Menu -->
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Perfil -->
+			<div class="col-md-3">
+				<img src="images/{{user.foto}}" class="img-thumbnail" alt="Responsive image">
+				<ul class="list-group">
+					<li class="list-group-item">{{user.login}} </li>
+					<li class="list-group-item">{{user.nome}}</li>
+					<li class="list-group-item">Número de posts: {{user.posts.length}}</li>
+					<li class="list-group-item">Descrição: {{user.description}}</li>
+					<li class="list-group-item">Data de nascimento: {{user.birthdate| date:"dd/MM/yyyy"}}</li>
+				</ul>
+			</div>
+			
+			<!-- Post -->
+			<div class="col-md-7">
+				<input ng-model = 'caixa' type="textarea" class="form-control" placeholder="Você gostaria de compartilhar algo?">
+					<span class="input-group-btn">
+						<button ng-click = 'postar(caixa)' class="btn btn-default" type="button">
+							<span class="glyphicon glyphicon-pencil"> Publicar
+						</button>
+					</span>
+				<br>
+				<br>
+				<!-- escreve os post na tela -->
+				<div ng-controller =  'printPostFollow'>
+					<div ng-repeat = "post in user.posts">
+						<div class="bs-callout bs-callout-primary">
+						
+						<div ng-bind-html="post.text | trataPost" ></div> 
+						{{post.updatedAt	| date: "dd/MM/yyyy"}} - <b>{{post.user.login}}</b>
+							<!-- Botao para editar o post -->
+							<a class="btn btn-default" href="#/editaPost/{{post.id}}" ng-if = "post.user.id == user.id">
+								<span class="glyphicon glyphicon-pencil">
+							</a>
+							</br>
+							<button class="btn btn-default" ng-click='curtirPost(post)'>
+								<span class="glyphicon glyphicon-thumbs-up">
+							</button>
+							{{post.quem_curtiu.length}}
+							<button class="btn btn-default" ng-click='descurtirPost(post)'>
+								<span class="glyphicon glyphicon-thumbs-down">
+							</button>
+							{{post.quem_nao_curtiu.length}}
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+

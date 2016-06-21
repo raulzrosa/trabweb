@@ -1,0 +1,6 @@
+<div ng-controller = 'UserController'>
+	Usuários Cadastrados:
+	<div ng-repeat = 'usuario in users'>
+		<a href='#/usuario/{{usuario.id}}'>{{usuario.nome}}</a>	
+	</div>	
+</div>

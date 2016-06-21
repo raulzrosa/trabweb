@@ -1,0 +1,42 @@
+<div ng-controller = 'LoginController'>
+	<label>Digite seu nome de usuário e sua senha<label>
+	<input ng-model = 'caixa1' type="textarea" class="form-control" placeholder="Nome de usuario">
+	<input ng-model = 'caixa2' type="password" class="form-control" placeholder="Senha">
+	<span class="input-group-btn">
+		<button ng-click = 'verificar(caixa1, caixa2)' class="btn btn-default" type="button">
+			 Login
+		</button>
+	</span>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<label> Cadastre-se aqui <label>
+	<input ng-model = 'caixaCadastro1' type="textarea" class="form-control" placeholder="Nome de usuario">
+	<input ng-model = 'caixaCadastro2' type="password" class="form-control" placeholder="Senha">
+	<span class="input-group-btn">
+		<button ng-click = 'cadastrar(caixaCadastro1, caixaCadastro2)' class="btn btn-default" type="button">
+			 Cadastrar
+		</button>
+	</span>
+<div>
+
+<div ng-controller='ExportController'>
+	<div ng-controller='ImportController'>
+	<div class="panel panel-default">
+  <div class="panel-body">
+  	Fazer Download dos dados:
+  	<div class='input-group'>
+  	<a  class="btn btn-info" href="/exportaDados.json" download target="_blank">Download</a>
+  	</div>
+	<br>
+	Carregar dados:	
+	<input type='file' id = 'arquivo'>
+	<div class='input-group'>
+	<a  class="btn btn-info" ng-click='importar_dados(arquivo)'>Carregar Dados</a>
+	</div>
+  </div>
+</div>
+	</div>
+</div>

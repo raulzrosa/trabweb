@@ -1,0 +1,43 @@
+<div ng-controller = 'UserController'>
+	<!-- Cabeçalho -->
+	<div class="page-header">
+		<ul class="nav nav-pills">
+		  <li role="presentation" class="active"><a href="#/home">Home</a></li>
+		  <li role="presentation"><a href="#/cadastro">Editar Perfil</a></li>
+		  <li role="presentation"><a href="#/groups">Criar Grupo</a></li>
+		  <li role="presentation"><a href="#/gruposcadastrados">Ver Grupos</a></li>
+		  <li role="presentation"><a href="#/usuarioscadastrados">Ver usuarios</a></li>
+		  <li role="presentation"><a href="#/paginaexport">Download Dados</a></li>
+		  <li role="presentation"><a href="#" ng-click = 'logout()'>Logout</a></li>
+		</ul>
+	</div>
+	<div ng-controller = 'groupController' class="container-fluid">
+		Deletar um grupo:
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Delete..." ng-model="nomeGrupo">
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button" ng-click='deletaGrupo(nomeGrupo)'>
+					<span class="glyphicon glyphicon-remove">
+				</button>
+			</span>
+		</div>
+		<br>
+		Seus Grupos:
+		<div ng-repeat = 'grupo in groups' ng-if="grupo.dono == user.id">
+			<a href='#/grupo/{{grupo.id}}'>{{grupo.nome}}</a>		
+		</div>
+		<br>
+		Grupos que participa:
+		<div ng-repeat = 'grupo in groups'>
+			<div ng-repeat = 'particip in grupo.participantes' ng-if="particip.id == user.id">
+				<a href='#/grupo/{{grupo.id}}'>{{grupo.nome}}</a>
+			</div>
+		</div>
+		<br>
+		Grupos Ativos:
+		<div ng-repeat = 'grupo in groups'>
+			<a href='#/grupo/{{grupo.id}}'>{{grupo.nome}}</a>		
+		</div>
+		<br>
+	</div>
+</div>

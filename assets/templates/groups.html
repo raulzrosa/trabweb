@@ -1,0 +1,23 @@
+<div ng-controller = 'UserController'>
+	<!-- Cabeçalho -->
+	<div class="page-header">
+		<ul class="nav nav-pills">
+		  <li role="presentation" class="active"><a href="#/home">Home</a></li>
+		  <li role="presentation"><a href="#/cadastro">Editar Perfil</a></li>
+		  <li role="presentation"><a href="#/groups">Criar Grupo</a></li>
+		  <li role="presentation"><a href="#/gruposcadastrados">Ver Grupos</a></li>
+		  <li role="presentation"><a href="#/usuarioscadastrados">Ver usuarios</a></li>
+		  <li role="presentation"><a href="#/paginaexport">Download Dados</a></li>
+		  <li role="presentation"><a href="#" ng-click = 'logout()'>Logout</a></li>
+		</ul>
+	</div>
+	<div ng-controller = 'groupController' class="container-fluid">
+		<label> Crie seu grupo aqui <label><br>
+		<input ng-model = 'nomeGrupo' type="textarea" class="form-control" placeholder="Nome do Grupo"><br>		
+				<span class="input-group-btn">
+					<button ng-click = 'criaGrupo(nomeGrupo)' class="btn btn-default" type="button">
+					Cadastrar
+					</button>
+				</span>
+	</div>
+</div>

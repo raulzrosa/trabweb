@@ -1,0 +1,28 @@
+<div ng-controller = 'UserController'>
+	<!-- Cabeçalho -->
+	<div class="page-header">
+		<ul class="nav nav-pills">
+		  <li role="presentation" class="active"><a href="#/home">Home</a></li>
+		  <li role="presentation"><a href="#/cadastro">Editar Perfil</a></li>
+		  <li role="presentation"><a href="#/groups">Criar Grupo</a></li>
+		  <li role="presentation"><a href="#/gruposcadasttrados">Ver Grupos</a></li>
+		  <li role="presentation"><a href="#/usuarioscadastrados">Ver usuarios</a></li>
+		  <li role="presentation"><a href="#/paginaexport">Download Dados</a></li>
+		  <li role="presentation"><a href="#" ng-click = 'logout()'>Logout</a></li>
+		</ul>
+	</div>
+</div>
+<div ng-controller = 'LoginController' class='container col-sm-12'>
+	<label> Complete seu cadastro aqui <label><br>
+		<input ng-model = 'caixaNome' type="textarea" class="form-control" placeholder="Nome completo"><br>
+		<input ng-model = 'dataNascimento' type="date" class="form-control" placeholder="Data de Nascimento"><br>
+		<input ng-model = 'descricao' type="textarea" class="form-control" placeholder="Descricao"><br>
+			<span class="input-group-btn">
+				<button ng-click = 'completaCadastro(caixaNome, dataNascimento, descricao)' class="btn btn-default" type="button">
+				 Cadastrar
+				</button>
+				<button ng-click = 'deletaUser()' class="btn btn-default" type="button">
+				 Excluir Perfil
+				</button>
+			</span>
+</div>
