@@ -34,10 +34,6 @@ module.exports = {
 			var usuariosACriar = [];
 			bd.users.forEach (function (u) {
 
-				if (users.find (function (U) { return u.login == U.login; })) {
-					return res.json ({ error: 'Já existe usuário de login "' + u.login + '"' });
-				}
-
 
 				userIdMap[u.login] = u.id;
 				
@@ -90,14 +86,14 @@ module.exports = {
 						if (err) {
 							return res.json ({ error: err });
 						}
-						Group.find ().populate (['dono', 'Participantes']).exec (function (err, gruposNovos) {
+						Group.find ().populate (['dono', 'participantes']).exec (function (err, gruposNovos) {
 
 							gruposCriados.forEach (function (g) {
 								var grupoSegue = gruposNovos.find (function (G) { return G.nome == g.nome; });
 
-								grupoSegue.Participantes.add (grupoSegue.dono.id);
+								grupoSegue.participantes.add (grupoSegue.dono.id);
 
-								grupoSegue.Participantes.add (grupoParticipantesMap[g.nome].map (function (u) { return userIdMap[u]; }));
+								grupoSegue.participantes.add (grupoParticipantesMap[g.nome].map (function (u) { return userIdMap[u]; }));
 								grupoSegue.save ();
 							});
 
